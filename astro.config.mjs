@@ -7,6 +7,8 @@ import shirones from "shirones";
 export default defineConfig({
   integrations: [
     shirones({
+      // Drop the theme's paginated blog index so "/" is free for our own page.
+      excludeRoutes: ["/[...page]"],
       // Override individual components by mirroring the theme's structure in
       // `src/components/`, or point at them explicitly:
       // components: { "atoms/blog/PostCard": "./src/components/PostCard.astro" },

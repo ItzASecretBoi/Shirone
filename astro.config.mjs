@@ -1,11 +1,15 @@
 import { defineConfig } from "astro/config";
-import shirones from "./src/integration/index.ts";
+import shirones from "shirones";
 
-// The integration drives every mode, this repository included: integrations,
-// fonts, markdown, vite aliases/plugins, trailingSlash and the image endpoint
-// all come from `src/integration/` and `src/config/integrationsConfig.ts`.
-// Do not re-add per-mode config here — update `src/config/` so both modes
-// stay in lockstep (see `src/config/README.md`).
+// Site-level settings (site URL, base, title, theme colour, fonts, …) live in
+// `shirones/config/` so they stay typed and version-controlled with your
+// content. This file only wires the theme in.
 export default defineConfig({
-	integrations: [shirones()],
+  integrations: [
+    shirones({
+      // Override individual components by mirroring the theme's structure in
+      // `src/components/`, or point at them explicitly:
+      // components: { "atoms/blog/PostCard": "./src/components/PostCard.astro" },
+    }),
+  ],
 });
